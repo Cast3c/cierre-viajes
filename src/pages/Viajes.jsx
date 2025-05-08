@@ -48,7 +48,7 @@ const Viajes = () => {
                 <td>{viaje.cliente}</td>
                 <td>${viaje.flete}</td>
                 <td>${gastosTotal(viaje.gastos)}</td>
-                <td><button onClick={() => eliminarViaje(index)}><p>Eliminar</pgit ></button></td>
+                <td><button onClick={() => eliminarViaje(index)}><p>Eliminar</p></button></td>
                 </tr>
             ))}
             </tbody>
