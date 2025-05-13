@@ -41,10 +41,108 @@
   color: #888;
 }
 
-.registro_viaje{
+.app{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.detalleViaje{
+  width: 100%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.inputGroup{
+  border: 1px solid red;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+th{
+  text-align: start;
+  padding: 0.2rem;
+  font-weight: bold;
+}
+
+td{
+  text-align: start;
+  padding: 0.2rem;
+}
+
+.docViaje{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 10px;
+}
+
+.tituloDoc{
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.listaClientes{
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+}
+
+.fleteCliente{
+  text-align: start;
+}
+
+.totalFlete{
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: end;
+  padding: 1rem;
+}
+
+.gastos{
+  border-bottom: 1px solid #ccc;
+  padding-left: 1rem;
+  text-align: start;
+}
+
+.totalGastos{
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: end;
+  padding: 1rem;
+}
+
+.resumenViaje{
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.totalViaje{
+  font-size: 0.8rem;
+  text-align: end;
 }
