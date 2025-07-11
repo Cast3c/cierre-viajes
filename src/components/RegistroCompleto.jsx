@@ -1,13 +1,18 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getById, update } from "../services/viajes"
 import DocViaje from "./DocViaje";
 import "../App.css"
 
-const RegistroCompleto = ({ viajes, setViajes }) => {
+const RegistroCompleto = () => {
   
-  const { index } = useParams();
-  const viajeIndex = Number(index)
-  const viaje = viajes[viajeIndex]
+  const { id } = useParams();
+  const viajeId = String(id)
+  const [viaje, setViaje] = useState(null)
+
+  useEffect(() => {
+    getById(viajeId).then(data => setViaje(data))
+  }, [viajeId])
 
   const [ clientes, setClientes ] = useState({
     nombre: "",
@@ -26,10 +31,19 @@ const RegistroCompleto = ({ viajes, setViajes }) => {
   })
 
   const agregarCliente = () => {
-    const nuevosViajes = [...viajes]
-    nuevosViajes[viajeIndex].clientes = [...(nuevosViajes[viajeIndex].clientes || []), clientes]
     
-    setViajes(nuevosViajes)
+    if(!viaje) return
+
+    const nuevoViaje = {
+      ...viaje, clientes: [...(viaje.clientes || []), clientes]
+    }
+
+    update(viajeId, nuevoViaje)
+      .then((data) => {
+        setViaje(data) 
+        console.log("Viaje actualizado:", data)
+    })
+      .catch((error) => console.error("Ocurrio un error al actualizar el viaje:", error))
 
     setClientes({
       nombre: "",
@@ -41,10 +55,21 @@ const RegistroCompleto = ({ viajes, setViajes }) => {
   }
 
   const agregarGastos = () => {
-    const nuevosViajes = [...viajes]
-    nuevosViajes[viajeIndex].gastos = gastos
-    setViajes(nuevosViajes)
+    if(!viaje)return
+
+    const newGastos = {
+      ...viaje, gastos: {...gastos}
+    }
+
+    update(viajeId, newGastos)
+      .then((data) => {
+        setViaje(data)
+        console.log("Gastos actualizados:", data)
+      })
+      .catch((error)=> console.error("Orcurrio un error al actualizar los gastos:", error))
+
     alert("Gastos agregados correctamente")
+
     setGastos({
       combustible: "",
       peajes: "",
@@ -52,9 +77,13 @@ const RegistroCompleto = ({ viajes, setViajes }) => {
       viaticos: "",
       comision: ""
     })
+
+    console.log("gastos:", gastos)
   }
 
-  if (!viaje) return <h2>Viaje no registrado.</h2>
+ if (!viaje) {
+      return <p>Cargando datos del viaje...</p>
+  }
 
   return (
     <div>
@@ -80,7 +109,6 @@ const RegistroCompleto = ({ viajes, setViajes }) => {
         </fieldset>
       </div>
       <DocViaje viaje={viaje} />
-      {console.log(viaje)}
     </div>
   )
 }

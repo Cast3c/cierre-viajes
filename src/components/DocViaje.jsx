@@ -4,13 +4,7 @@ import html2pdf from "html2pdf.js"
 const DocViaje = ({ viaje }) => {
     const tituloViaje = viaje.fecha + " | " + viaje.origen + " → " + viaje.destino
     const [clientes, setClientes] = useState([])
-    const [gastos, setGastos] = useState({
-        combustible: "",
-        peajes: "",
-        ayudantes: "",
-        viaticos: "",
-        comision: ""
-    })
+    const [gastos, setGastos] = useState({})
 
     const [mostrarResumen, setMostrarResumen] = useState(false)
 
@@ -113,12 +107,14 @@ const DocViaje = ({ viaje }) => {
             </div>
             <div className="gastos">
                 <h3>Gastos</h3>
+                {console.log(gastos)}
                 <div>
                     <table>
                         <tbody>
                             <tr>
                                 <td>Combustible</td>
                                 <td>${gastos.combustible}</td>
+                                {console.log(gastos.combustible)}
                             </tr>
                             <tr>
                                 <td>Peajes</td>

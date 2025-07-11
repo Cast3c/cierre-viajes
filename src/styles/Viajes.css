@@ -1,7 +1,48 @@
+.viajesList{
+    display: grid;
+    gap: 1rem;
+    max-width: 1200px;
+    max-height: 900px;
+}
+
+.newBtn{
+    display: grid;
+    border: 1px solid red;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
+    width: 250px;
+    height: 125px;
+    grid-template-columns: 50px 1fr ;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.newBntItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .listaSimple {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
+    min-width: 500px;
+    height: auto;
+    padding: 1rem;
+}
+            
+.msjNoViaje{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }

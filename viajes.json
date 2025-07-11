@@ -1,7 +1,71 @@
 {
-    "viajes": [
-        
-    ] 
-
-    
+  "viajes": [
+    {
+      "id": "27d4",
+      "estado": "",
+      "fecha": "2025-05-01",
+      "origen": "Bogota",
+      "destino": "Bucaramanga",
+      "conductor": "Ricardo Castellar",
+      "placa": "TLZ834",
+      "flete": "2000000"
+    },
+    {
+      "id": "51d7",
+      "estado": "",
+      "fecha": "2025-05-02",
+      "origen": "Bogota",
+      "destino": "Bucaramanga",
+      "conductor": "Ricardo Castellar",
+      "placa": "TLZ834",
+      "flete": "2000000"
+    },
+    {
+      "id": "34b4",
+      "estado": "",
+      "fecha": "2025-05-22",
+      "origen": "Bogota ",
+      "destino": "Barrancabermeja",
+      "conductor": "Ricardo Castellar",
+      "placa": "TLZ834",
+      "flete": "3500000",
+      "clientes": [
+        {
+          "nombre": "Ricardo ",
+          "telefono": "3132129686",
+          "origen": "Bogota ",
+          "destino": "Barrancabermeja",
+          "flete": "1800000"
+        },
+        {
+          "nombre": "Juan ",
+          "telefono": "3107888865",
+          "origen": "Barrancabermeja ",
+          "destino": "bucarmanga",
+          "flete": "500000"
+        },
+        {
+          "nombre": "Angie ",
+          "telefono": "3138716188",
+          "origen": "Bucarmanga",
+          "destino": "Bogota ",
+          "flete": "500000"
+        },
+        {
+          "nombre": "Cesar ",
+          "telefono": "1234567890",
+          "origen": "Bucaramanga",
+          "destino": "Bogota",
+          "flete": "700000"
+        }
+      ],
+      "gastos": {
+        "combustible": "600000",
+        "peajes": "250000",
+        "ayudantes": "250000",
+        "viaticos": "",
+        "comision": "700000"
+      }
+    }
+  ]
 }
