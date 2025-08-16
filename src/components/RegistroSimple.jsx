@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Registro.css"
+import { create } from "../services/viajes"
 
-const RegistroSimple = ({ onCrear, onClose }) => {
+const RegistroSimple = ({ onClose }) => {
   
   const [viaje, setViaje] = useState({
     estado: "",
@@ -9,38 +11,47 @@ const RegistroSimple = ({ onCrear, onClose }) => {
     origen: "",
     destino: "",
     conductor: "",
-    placa: "",
+    vehiculo: "",
     flete: ""
   })
+  const navigate = useNavigate()
 
-  const handleChange = (e) => {
+  const handleChange =  (e) => {
     const { name, value } = e.target
     setViaje(prev => ({...prev, [name]: value}))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (!viaje.fecha || !viaje.origen || !viaje.destino || !viaje.flete){
       alert("Por favor, completa todos los campos.")
       return //<- esto evita que el codigo continue si no se cumplen las condiciones
-    }    
-
-    setViaje({
-      estado: "",
-      fecha: "",
-      origen: "",
-      destino: "",
-      conductor: "",
-      placa: "",
-      flete: ""
-    })
-    onCrear(viaje)
+    } 
+    
+    try {
+      const nuevoViaje = await create(viaje)
+      console.log("Viaje creado con Id: ",nuevoViaje.id)
+      navigate(`/registro-completo/${nuevoViaje._id}`)
+      setViaje({
+        estado: "",
+        fecha: "",
+        origen: "",
+        destino: "",
+        conductor: "",
+        vehoculo: "",
+        flete: "",
+      });
+    
+    }catch(error){
+      console.error("Error al crear el viaje:", error)
+      alert("Ocurrió un error al crear el viaje. Por favor, inténtalo de nuevo.")
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="registroSimple">
       <h2>Registrar nuevo viaje</h2>
-      <input name="estado" type="hidden" value="iniciado" />
       <label>
         Fecha
         <input name="fecha" type="date" value={viaje.fecha} onChange={handleChange} required />
@@ -59,7 +70,7 @@ const RegistroSimple = ({ onCrear, onClose }) => {
       </label>
       <label>
         Placa
-        <input name="placa" placeholder="Placa" value={viaje.placa} onChange={handleChange}/>
+        <input name="vehiculo" placeholder="placa- vehiculo" value={viaje.vehiculo} onChange={handleChange}/>
       </label>
       <label>
         Flete

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 import html2pdf from "html2pdf.js"
 
 const DocViaje = ({ viaje }) => {
-    const tituloViaje = viaje.fecha + " | " + viaje.origen + " → " + viaje.destino
+    const fecha = new Date(viaje.fecha).toISOString().split('T')[0]
+    const tituloViaje = fecha + " | " + viaje.origen + " → " + viaje.destino
     const [clientes, setClientes] = useState([])
     const [gastos, setGastos] = useState({})
 
     const [mostrarResumen, setMostrarResumen] = useState(false)
 
+    
     useEffect(() => {
         if (Array.isArray(viaje.clientes)) {    
             setClientes(viaje.clientes.map(cliente => ({
@@ -17,9 +19,16 @@ const DocViaje = ({ viaje }) => {
     }, [viaje.clientes])
 
     useEffect(() => {
-        if (viaje.gastos) {
-            setGastos(viaje.gastos)
-        }
+        if (Array.isArray(viaje.gastos) && viaje.gastos.length === 1) {
+            const gasto = viaje.gastos[0]
+            setGastos({ 
+                    combustible: Number(gasto.combustible) || 0,
+                    peajes: Number(gasto.peajes) || 0,
+                    ayudantes: Number(gasto.ayudantes) || 0,
+                    viaticos: Number(gasto.viaticos) || 0,
+                    comision: Number(gasto.comision) || 0
+            })
+        };
     }, [viaje.gastos])
 
     const sumFlete = clientes.reduce((total, cliente) => { 
@@ -52,7 +61,7 @@ const DocViaje = ({ viaje }) => {
         const element = document.querySelector(".docViaje")
         const opciones = {
             margin: 0.5,
-            filename: `viaje-${viaje.fecha}.pdf`,
+            filename: `viaje-${fecha}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }

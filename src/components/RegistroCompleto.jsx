@@ -31,17 +31,23 @@ const RegistroCompleto = () => {
   })
 
   const agregarCliente = () => {
+
+    const url = "clientes";
     
     if(!viaje) return
 
-    const nuevoViaje = {
-      ...viaje, clientes: [...(viaje.clientes || []), clientes]
-    }
+    // const clientesViaje = {
+    //   clientes: [...(viaje.clientes || []), clientes]
+    // }
 
-    update(viajeId, nuevoViaje)
+
+    update(viajeId, clientes, url )
+      
       .then((data) => {
-        setViaje(data) 
+        setViaje(data)
+        console.log(clientes) 
         console.log("Viaje actualizado:", data)
+        alert("cliente agregado correctamente")
     })
       .catch((error) => console.error("Ocurrio un error al actualizar el viaje:", error))
 
@@ -55,18 +61,19 @@ const RegistroCompleto = () => {
   }
 
   const agregarGastos = () => {
+    const url  = "gastos"
     if(!viaje)return
 
-    const newGastos = {
-      ...viaje, gastos: {...gastos}
-    }
+    // const newGastos = {
+    //   gastos: {...gastos}
+    // }
 
-    update(viajeId, newGastos)
+    update(viajeId, gastos, url)
       .then((data) => {
         setViaje(data)
         console.log("Gastos actualizados:", data)
       })
-      .catch((error)=> console.error("Orcurrio un error al actualizar los gastos:", error))
+      .catch((error)=> console.error("Ocurrio un error al actualizar los gastos:", error))
 
     alert("Gastos agregados correctamente")
 
@@ -100,11 +107,11 @@ const RegistroCompleto = () => {
         </fieldset>
         <fieldset className="inputGroup">
           <legend><h3>Gastos</h3></legend>
-          <input placeholder="Combustible" value={gastos.combustible} onChange={(e) => setGastos({ ...gastos, combustible: e.target.value })} />
-          <input placeholder="Peajes" value={gastos.peajes} onChange={(e) => setGastos({ ...gastos, peajes: e.target.value })} />
-          <input placeholder="Ayudantes" value={gastos.ayudantes} onChange={(e) => setGastos({ ...gastos, ayudantes: e.target.value })} />
-          <input placeholder="Viáticos" value={gastos.viaticos} onChange={(e) => setGastos({ ...gastos, viaticos: e.target.value })} />
-          <input placeholder="Comisión" value={gastos.comision} onChange={(e) => setGastos({ ...gastos, comision: e.target.value })} />
+          <input placeholder="Combustible" value={gastos.combustible} onChange={(e) => setGastos({ ...gastos, combustible: e.target.value })} type="number" />
+          <input placeholder="Peajes" value={gastos.peajes} onChange={(e) => setGastos({ ...gastos, peajes: e.target.value })} type="number"/>
+          <input placeholder="Ayudantes" value={gastos.ayudantes} onChange={(e) => setGastos({ ...gastos, ayudantes: e.target.value })} type="number"/>
+          <input placeholder="Viáticos" value={gastos.viaticos} onChange={(e) => setGastos({ ...gastos, viaticos: e.target.value })} type="number"/>
+          <input placeholder="Comisión" value={gastos.comision} onChange={(e) => setGastos({ ...gastos, comision: e.target.value })} type="number"/>
           <button onClick={agregarGastos}>Guardar Gastos</button>
         </fieldset>
       </div>

@@ -7,6 +7,6 @@ export const getById = (id) => axios.get(`${baseURL}/${id}`).then((response)=> r
 
 export const create = (viaje) => axios.post(baseURL, viaje).then((response) => response.data)
 
-export const update = (id, newData) => axios.put(`${baseURL}/${id}`, newData).then((response) => response.data)
+export const update = (id, newData, url) => axios.put(`${baseURL}/${id}/${url}`, newData).then((response) => response.data)
 
 export const remove = (id) => axios.delete(`${baseURL}/${id}`).then((response) => response.data)

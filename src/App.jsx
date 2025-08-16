@@ -19,16 +19,16 @@ const App = () => {
   const agregarViaje = (nuevoViaje) => {
     const nuevosViajes = [...viajes, nuevoViaje]
     setViajes(nuevosViajes)
-    return nuevosViajes.length - 1
+    console.log('Viaje agregado:', nuevoViaje)
+    return 
   }
-
 
   return (
     <Router>
       <div className='app'>
       <Routes>
         <Route path="/" element={<ListaViajes />}/>
-        <Route path="/viaje-nuevo" element={<RegistroSimple onNuevoViaje={agregarViaje}/>}/>
+        <Route path="/viaje-nuevo" element={<RegistroSimple />}/>
         <Route path="/registro-completo/:id" element={<RegistroCompleto />}/> 
       </Routes>
       </div>
