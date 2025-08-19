@@ -11,8 +11,10 @@ const RegistroCompleto = () => {
   const [viaje, setViaje] = useState(null)
 
   useEffect(() => {
-    getById(viajeId).then(data => setViaje(data))
-  }, [viajeId])
+    getById(id).then(data => (setViaje(data)))
+  }, [id])
+
+  console.log(viaje)
 
   const [ clientes, setClientes ] = useState({
     nombre: "",
@@ -36,20 +38,14 @@ const RegistroCompleto = () => {
     
     if(!viaje) return
 
-    // const clientesViaje = {
-    //   clientes: [...(viaje.clientes || []), clientes]
-    // }
-
-
-    update(viajeId, clientes, url )
-      
+    update(id, clientes, url )
       .then((data) => {
-        setViaje(data)
-        console.log(clientes) 
-        console.log("Viaje actualizado:", data)
-        alert("cliente agregado correctamente")
+      setViaje(data)
+      console.log(clientes) 
+      console.log("Viaje actualizado:", viaje)
+      alert("cliente agregado correctamente")
     })
-      .catch((error) => console.error("Ocurrio un error al actualizar el viaje:", error))
+    .catch((error) => console.error("Ocurrio un error al actualizar el viaje:", error))
 
     setClientes({
       nombre: "",

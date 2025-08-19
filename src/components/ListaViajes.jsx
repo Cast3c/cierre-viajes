@@ -15,7 +15,8 @@ const ListaViajes = () => {
     getAll()
       .then(data=> setViajes(data))
   },[])
-
+  
+  
   const [ newViaje, setNewViaje ] = useState(false)
 
   const handleNewViaje = async (nuevoViaje) => {
