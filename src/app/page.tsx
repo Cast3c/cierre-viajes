@@ -29,7 +29,7 @@ export default function Home() {
                 <h2 className="text-2xl font-bold">Dispatcher Portal</h2>
                 <p className="text-muted-foreground">Manage your fleet, optimize routes with AI, and track every trip in real-time from a centralized web dashboard.</p>
               </div>
-              <Link href="/dashboard" className="block w-full">
+              <Link href="/login" className="block w-full">
                 <Button className="w-full py-6 text-lg font-semibold group">
                   Access Dashboard
                   <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -38,7 +38,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow border-2 border-transparent hover:border-accent/10">
+          {/* <Card className="hover:shadow-lg transition-shadow border-2 border-transparent hover:border-accent/10">
             <CardContent className="p-8 space-y-6">
               <div className="bg-accent/5 w-12 h-12 rounded-lg flex items-center justify-center">
                 <Truck className="w-6 h-6 text-accent" />
@@ -54,7 +54,7 @@ export default function Home() {
                 </Button>
               </Link>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
 
         <div className="text-center">
